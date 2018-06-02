@@ -1,0 +1,5 @@
+# files / dir to ignore
+Dockerfile.*
+*.md
+.*.yml
+config/
