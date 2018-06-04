@@ -43,9 +43,9 @@ docker stack deploy -c docker-compose.yml monitoring
 ```
 
 ## Services Access
- - Grafana http://<swarm-address>:3000/ (admin:admin)
- - Prometheus http://<swarm-address>:9090/
- - AlertManager http://<swarm-address>:9093/
+ - Grafana `http://<swarm-address>:3000/` `(admin:admin)`
+ - Prometheus `http://<swarm-address>:9090/`
+ - AlertManager `http://<swarm-address>:9093/`
 
 ## Grafana Dashboard Panels
  - HTTP Duration (s)
