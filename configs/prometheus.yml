@@ -25,8 +25,6 @@ scrape_configs:
         refresh_interval: 5s
   - job_name: "cadvisor"
     scrape_interval: 5s
-    # static_configs:
-    #   - targets: ['cadvisor:8080']
     dns_sd_configs:
       - names: ['tasks.cadvisor']
         port: 8080
@@ -44,12 +42,6 @@ scrape_configs:
     static_configs:
       - targets:
         - https://saidsef.co.uk
-        # - https://ide.saidsef.co.uk
-        - https://api.saidsef.co.uk
-        - https://docker.saidsef.co.uk
-        - https://slashnews.co.uk
-        - https://jobround.co.uk
-        - http://beta.saidsef.co.uk:8083/healthcheck
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
@@ -62,4 +54,3 @@ alerting:
   - static_configs:
     - targets:
       - alertmanager:9093
-
