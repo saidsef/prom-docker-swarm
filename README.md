@@ -66,3 +66,5 @@ docker stack deploy -c docker-compose.yml monitoring
 ![HTTDuration](./screenshots/screenshot-1.png)
 ![Website](./screenshots/screenshot-2.png)
 ![Container](./screenshots/screenshot-3.png)
+![DNS](./screenshots/screenshot-4.png)
+![SSL](./screenshots/screenshot-5.png)
