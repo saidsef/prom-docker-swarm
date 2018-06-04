@@ -11,14 +11,18 @@ networks:
       - "blackbox-exporter=true"
       - "prometheus=true"
 configs:
-  prometheus_config:
-    file: ./configs/prometheus.yml
-  prometheus_rules:
-    file: ./configs/alert.rules.yml
   alertmanager_config:
     file: ./configs/alertmanager.yml
   blackbox_config:
     file: ./configs/blackbox.yml
+  grafana_datasource:
+    file: ./configs/datasources/prometheus.yml
+  grafana_dashboard:
+    file: ./configs/dashboards/monitoring.json
+  prometheus_config:
+    file: ./configs/prometheus.yml
+  prometheus_rules:
+    file: ./configs/alert.rules.yml
 volumes:
   grafana:
     driver: local
@@ -124,6 +128,11 @@ services:
     hostname: '{{.Node.ID}}'
     ports:
       - 3000:3000
+    configs:
+      - source: grafana_datasource
+        target: /etc/grafana/provisioning/datasources/prometheus.yml
+      - source: grafana_dashboard
+        target: /etc/grafana/provisioning/dashboards/monitoring.json
     volumes:
       - grafana:/var/lib/grafana:rw
     depends_on:
