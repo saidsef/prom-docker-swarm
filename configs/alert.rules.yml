@@ -1,0 +1,51 @@
+groups:
+- name: DiskOperations
+  rules:
+  - alert: LowDiskSpace
+    expr: node_filesystem_avail{fstype=~"(ext.|xfs)"} / node_filesystem_size{fstype=~"(ext.|xfs)"}* 100 <= 10
+    for: 15m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Really low disk space left on {{ $labels.mountpoint }} on {{ $labels.fqdn }}: {{ $value | humanize }}%"
+  - alert: NoDiskSpace
+    expr: node_filesystem_avail{fstype=~"(ext.|xfs)"} / node_filesystem_size{fstype=~"(ext.|xfs)"} * 100 <= 1
+    for: 15m
+    labels:
+      severity: critical
+    annotations:
+      summary: "No disk space left on {{ $labels.mountpoint }} on {{ $labels.fqdn }}: {{ $value | humanize }}%"
+  - alert: HighDiskUsage
+    expr: node_filesystem_avail{fstype=~"(ext.|xfs)"} / node_filesystem_size{fstype=~"(ext.|xfs)"} * 100 <= 20
+    for: 15m
+    labels:
+      serverity: critical
+    annotations:
+      summary: 'Disk usage on {{ $labels.instance}} is consistently over 80%'
+      description: 'High Disk usage on {{ $labels.fqdn }}'
+  - alert: HighInodeUsage
+    expr:  node_filesystem_files_free{fstype=~"(ext.|xfs)"} / node_filesystem_files{fstype=~"(ext.|xfs)"} * 100 <= 20
+    for: 15m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Free inodes on {{ $labels.fqdn }} on mountpoint {{ $labels.mountpoint }} is at {{ $value | printf \"%.2f\" }}%"
+- name: Containers
+  rules:
+  - alert: HighContainerMemUsage
+    expr: sum(container_memory_rss{container_label_com_docker_swarm_task_name=~".+"}) BY (name, instance) > 3490652160
+    for: 15m
+    labels:
+      serverity: critical
+    annotations:
+      summary: "{{ $labels.name }} is eating up a LOT of memory"
+      description: "Memory consumption of {{ $labels.name }} is at {{ $value | humanize}}"
+  - alert: HighContainerCPUUsage
+    expr: sum(rate(container_cpu_usage_seconds_total{container_label_com_docker_swarm_task_name=~".+"}[5m])) by (container_label_com_docker_swarm_task_name,instance) * 100 > 200
+    for: 5m
+    labels:
+      serverity: critical
+    annotations:
+      summary: "{{ $labels.container_label_com_docker_swarm_task_name }} is using a LOT of CPU"
+      description: "CPU usage is {{ $value | humanize}}%"
+    
