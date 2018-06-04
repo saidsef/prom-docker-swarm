@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "panels": [
     {
@@ -244,7 +243,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Websites Downtime (%)",
+      "title": "Websites Uptime (%)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -423,7 +422,7 @@
       "thresholds": [],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Container Memory Usage (top3)",
+      "title": "Containers Memory Usage (top3)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -552,7 +551,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Disk Predict Linear",
+      "title": "Disk Usage Prediction (%)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -978,7 +977,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Websites SSL Days",
+      "title": "Websites SSL Expiry (Days)",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -1055,5 +1054,5 @@
   "timezone": "",
   "title": "Websites Monitoring",
   "uid": "hHHzoT4iz",
-  "version": 10
+  "version": 1
 }
