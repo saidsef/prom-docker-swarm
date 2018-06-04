@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.5'
 networks:
   mon:
     driver: overlay
@@ -17,6 +17,8 @@ configs:
     file: ./configs/blackbox.yml
   grafana_datasource:
     file: ./configs/datasources/prometheus.yml
+  grafana_dashboard_yml:
+    file: ./config/dashboards/all.yml
   grafana_dashboard:
     file: ./configs/dashboards/monitoring.json
   prometheus_config:
@@ -131,8 +133,10 @@ services:
     configs:
       - source: grafana_datasource
         target: /etc/grafana/provisioning/datasources/prometheus.yml
+      - source: grafana_dashboard_yml
+        target: /etc/grafana/provisioning/dashboard/all.yml
       - source: grafana_dashboard
-        target: /etc/grafana/provisioning/dashboards/monitoring.json
+        target: /var/lib/grafana/dashboards/monitoring.json
     volumes:
       - grafana:/var/lib/grafana:rw
     depends_on:
