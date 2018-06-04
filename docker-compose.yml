@@ -12,13 +12,13 @@ networks:
       - "prometheus=true"
 configs:
   prometheus_config:
-    file: ./prometheus/prometheus.yml
+    file: ./configs/prometheus.yml
   prometheus_rules:
-    file: ./prometheus/alert.rules.yml
+    file: ./configs/alert.rules.yml
   alertmanager_config:
-    file: ./prometheus/alertmanager.yml
+    file: ./configs/alertmanager.yml
   blackbox_config:
-    file: ./prometheus/blackbox.yml
+    file: ./configs/blackbox.yml
 volumes:
   grafana:
     driver: local
