@@ -59,3 +59,10 @@ docker stack deploy -c docker-compose.yml monitoring
  - Websites DNS Lookup (s)
  - Websites Total
  - Websites Down
+
+## Screenshots
+
+![Dashboard](./screenshots/screenshot-0.png)
+![HTTDuration](./screenshots/screenshot-1.png)
+![Website](./screenshots/screenshot-2.png)
+![Container](./screenshots/screenshot-3.png)

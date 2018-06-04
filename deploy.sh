@@ -9,5 +9,12 @@ if ! [ -x "$(command -v docker)" ]; then
   exit 1
 fi
 
+echo "Downloading docker-compose"
+curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o ./docker-compose
+chmod +x docker-compose
+
+echo "Building Containers"
+./docker-compose build
+
 echo "Deploying stack"
 docker stack deploy -c docker-compose.yml monitoring
