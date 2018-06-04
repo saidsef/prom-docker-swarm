@@ -134,7 +134,7 @@ services:
       - source: grafana_datasource
         target: /etc/grafana/provisioning/datasources/prometheus.yml
       - source: grafana_dashboard_yml
-        target: /etc/grafana/provisioning/dashboard/all.yml
+        target: /etc/grafana/provisioning/dashboards/all.yml
       - source: grafana_dashboard
         target: /var/lib/grafana/dashboards/monitoring.json
     volumes:
