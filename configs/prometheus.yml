@@ -15,7 +15,7 @@ scrape_configs:
   - job_name: 'engine'
     scrape_interval: 5s
     static_configs:
-      - targets: ['172.30.1.160:4999']
+      - targets: ['127.0.0.1:4999']
   - job_name: "gitlab"
     scrape_interval: 15s
     dns_sd_configs:
