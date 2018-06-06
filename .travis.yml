@@ -1,0 +1,5 @@
+dist: trusty
+jobs:
+  include:
+    - stage: test
+      script: docker run --rm -ti -v `pwd`/configs/alert.rules.yml:/rules/alert.rules.yml registry.gitlab.com/gitlab-com/runbooks:2.1.0 /prometheus/promtool check rules /rules/alert.rules.yml
